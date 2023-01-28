@@ -1,0 +1,47 @@
+include "emu8086.inc"
+.MODEL SMALL 
+.STACK 100H          
+.CODE    
+         
+         MAIN PROC  
+         PRINTN "SUM OF FIRST 10 NATURAL NUMBERS ARE:"
+         
+         MOV AX, 0
+         MOV BX, 1 
+         MOV CX, 10 
+   
+         FOR:          
+         ADD AX, BX
+         
+         CMP BX, CX     
+         JE ENDF 
+            
+         INC BX       
+         JMP FOR
+
+       
+         ENDF:  
+         PRINTN
+         PRINTN
+         MOV AH, 0 
+         MOV BL, 10
+         DIV BL
+         MOV BH, AH
+                              
+         
+         MOV DL, AL
+         ADD DL, 48
+         MOV AH, 2
+         INT 21H
+         
+         MOV DL, BH
+         ADD DL, 48
+         MOV AH, 2
+         INT 21H
+         
+
+         MAIN ENDP 
+         MOV AH ,4CH 
+         INT 21H   
+         ENDP
+END MAIN
